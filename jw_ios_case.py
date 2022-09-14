@@ -19,7 +19,7 @@ class JiWei:
     @classmethod
     def jwt_01(cls, c, video_camera_name):  # 登录
         #with c.alert.watch_and_click(['提示', '取消']):
-             #c(name="取消").click()
+             #c(name="取消").click()#
         c.session('com.co.Yoosee')
         sleep(5)
         a = c.app_current()
