@@ -36,7 +36,7 @@ class JiWei:
         c.session().app_terminate('com.co.Yoosee')  # 关闭app
 
     @classmethod
-    def jwt_14(cls, c, video_camera_name):  # 周云婷手机登录
+    def jwt_14(cls, c, video_camera_name):  # 周云婷微信登录
         c.session('com.co.Yoosee')
         c(name="微信").click()
         c(name="同意并继续").click()
