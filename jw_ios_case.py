@@ -23,14 +23,14 @@ wda.DEBUG = True
 class JiWei:
     @classmethod
     def jwt_01(cls, c, video_camera_name):  # 登录
-        c.session('com.co.Yoosee')  # 打开app
+        c.session('com.co.Yoosee')  # 打开app   ！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
         c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
         c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
         c(type='XCUIElementTypeSecureTextField').set_text("zx123456")  # 填写密码
         c(name="登录").click()  # 点击登录按钮
         c(name="同意并继续").click()  # 同意隐私协议
         c(name="以后").click()
-        if c(name="添加新设备"):  # 判断设备列表是否有设备
+        if c(name="添加新设备"):  # 判断设备列表是否有设备  ！用assert 断言判断，若c(name="添加新设备")不存在即报错
             c(name="我的").click()
             c(type="XCUIElementTypeImage").click()
             c(name="退出登录").click()
