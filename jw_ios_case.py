@@ -30,7 +30,7 @@ class JiWei:
         c(name="登录").click()  # 点击登录按钮
         c(name="同意并继续").click()  # 同意隐私协议
         c(name="以后").click()
-        if c(name="添加新设备"):  # 判断设备列表是否有设备  ！用assert 断言判断，若c(name="添加新设备")不存在即报错
+        if c(name="添加新设备"):  # 判断设备列表是否有设备  ！不要用if,用assert 断言判断，若c(name="添加新设备")不存在即报错就行了，框架自会恢复执行
             c(name="我的").click()
             c(type="XCUIElementTypeImage").click()
             c(name="退出登录").click()
