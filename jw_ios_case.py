@@ -17,7 +17,7 @@ import configparser
 # config.read(cfgpath, encoding="gb2312")
 # phone_num = config.get('sec1', '手机登录的号码')
 # phone_pwd = config.get('sec1', '手机登录的密码')
-wda.DEBUG = True
+#wda.DEBUG = True
 
 
 class JiWei:
@@ -48,3 +48,12 @@ class JiWei:
         # c(name="登录").click() 
 
         '''
+    @classmethod
+    def jwt_02(cls, c, video_camera_name):  # 登录
+        sleep(3)
+        print ('第2条用例')
+
+    @classmethod
+    def jwt_03(cls, c, video_camera_name):  # 登录
+        sleep(3)
+        print('第3条用例')
