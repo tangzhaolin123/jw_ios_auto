@@ -17,14 +17,14 @@ import configparser
 # config.read(cfgpath, encoding="gb2312")
 # phone_num = config.get('sec1', '手机登录的号码')
 # phone_pwd = config.get('sec1', '手机登录的密码')
-wda.DEBUG = True
+#wda.DEBUG = True
 
 
 class JiWei:
     # 登录 判断是否有设备
     @classmethod
-    def jwt_01(cls, c, video_camera_name):
-        c.session('com.co.Yoosee')  # 打开app
+    def jwt_01(cls, c, video_camera_name):  # 登录
+        c.session('com.co.Yoosee')  # 打开app   ！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
         c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
         c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
         c(type='XCUIElementTypeSecureTextField').set_text("zx123456")  # 填写密码
@@ -32,7 +32,7 @@ class JiWei:
         c(name="同意并继续").click()  # 同意隐私协议
         c(name="以后").click()
         sleep(4)
-        assert c(name="添加设备")#判断是否有添加设备按钮
+        assert c(name="添加设备") # 判断设备列表是否有设备  ！不要用if,用assert 断言判断，若c(name="添加新设备")不存在即报错就行了，框架自会恢复执行
         sleep(2)
         assert c(name="添加设备")
         c(xpath='//XCUIElementTypeButton[@name="我的"]').click()
@@ -74,3 +74,14 @@ class JiWei:
             sleep(5)
         else:
             c.close()
+
+
+    @classmethod
+    def jwt_02(cls, c, video_camera_name):  # 登录
+        sleep(3)
+        print ('第2条用例')
+
+    @classmethod
+    def jwt_03(cls, c, video_camera_name):  # 登录
+        sleep(3)
+        print('第3条用例')

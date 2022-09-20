@@ -13,7 +13,7 @@ import json
 import requests
 import xlrd
 import configparser
-from PIL import Image
+from PIL import Image,ImageStat
 import multiprocessing
 from pathlib import Path
 import wda
@@ -509,7 +509,10 @@ class FileUp:
             sleep(5)
             r = requests.get(url=res)
             if r.status_code == 200:
-                os.remove(result)
+				try:
+					os.remove(result)
+				except:
+					pass
 
     def main(self):
         #while True:
