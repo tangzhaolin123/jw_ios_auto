@@ -21,8 +21,9 @@ wda.DEBUG = True
 
 
 class JiWei:
+    # 登录 判断是否有设备
     @classmethod
-    def jwt_01(cls, c, video_camera_name):  # 登录
+    def jwt_01(cls, c, video_camera_name):
         c.session('com.co.Yoosee')  # 打开app
         c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
         c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
@@ -30,39 +31,46 @@ class JiWei:
         c(name="登录").click()  # 点击登录按钮
         c(name="同意并继续").click()  # 同意隐私协议
         c(name="以后").click()
-        if c(name="添加新设备"):  # 判断设备列表是否有设备
-            c(name="我的").click()
-            c(type="XCUIElementTypeImage").click()
+        sleep(4)
+        assert c(name="添加设备")#判断是否有添加设备按钮
+        sleep(2)
+        assert c(name="添加设备")
+        c(xpath='//XCUIElementTypeButton[@name="我的"]').click()
+        c(xpath='//XCUIElementTypeImage[@name="我的头像"]').click()
+        c(name="退出登录").click()
+    # 循环登录10次
+    @classmethod
+    def jwt_02(cls, c, video_camera_name):  # 登录
+        for i in range(10):
+            c.session('com.co.Yoosee')  # 打开app
+            c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
+            c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
+            c(type='XCUIElementTypeSecureTextField').set_text("zx123456")  # 填写密码
+            c(name="登录").click()  # 点击登录按钮
+            c(name="同意并继续").click()  # 同意隐私协议
+            c(name="以后").click()
+            sleep(2)
+            assert c(name="添加设备")
+            c(xpath='//XCUIElementTypeButton[@name="我的"]').click()
+            c(xpath='//XCUIElementTypeImage[@name="我的头像"]').click()
             c(name="退出登录").click()
-            sleep(5)
+            sleep(2)
             c.close()
+    #循环点击监控10次
+    @classmethod
+    def jwt_03(cls,c,video_camera_name):
+        c.session('com.co.Yoosee')  # 打开app
+        c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
+        c(type='XCUIElementTypeTextField').set_text("17633853458")  # 填写账号
+        c(type='XCUIElementTypeSecureTextField').set_text("xz123456")  # 填写密码
+        c(name="登录").click()  # 点击登录按钮
+        c(name="同意并继续").click()  # 同意隐私协议
+        c(name="以后").click()
+        sleep(2)
+        for i in range(10):# 循环执行10次
+            c(type='XCUIElementTypeCell',index=2).click() # 通过index定位需要点击的设备窗口
+            sleep(10)#
+            c(type='XCUIElementTypeButton',name="iot back").click()# 通过name属性定位返回按钮 需要注意报警消息弹窗
+            sleep(5)
         else:
             c.close()
-        '''
-         #智慧生活登录
-        # c.session('com.huawei.smarthome-ios')  # 打开app
-        # c(name="登录").click()  # 点击登录按钮
-        # c(name="密码登录").click() 
-        # c(value="密码").click() #需点击输入框 不然输入法无法打开
-        # c(value="密码").set_text("xz123456")  # 填写密码
-        # c(name="登录").click() 
-
-        '''
-
-        # a = c.app_current()
-        # #print (a)
-        # #print(c.alert.exists)
-        # if c.alert.watch_and_click(['提示', '取消']):
-        # #with c.alert.watch_and_click(['提示', '取消']):
-        #      c(name="取消").click()
-        # #c.screenshot('screen.png')
-        # #c(name="取").click()
-        # # u.app_clear('com.yoosee')  # 清除应用数据
-        # # # u.watcher.stop()
-        # # SameOperation().app_go(u)
-        # # if u(text='用户服务协议和隐私政策概要').exists:
-        # #     u(resourceId='com.yoosee:id/tv_no').click(timeout=5)
-        # #     sleep(3)
-        # #     assert not u(text='登录').exists, '未进入登录界面'
-        # # else:
-        # #     assert u(text='用户服务协议和隐私政策概要').exists, '用户服务协议弹窗不存在'
