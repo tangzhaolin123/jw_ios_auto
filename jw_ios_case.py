@@ -74,14 +74,3 @@ class JiWei:
             sleep(5)
         else:
             c.close()
-
-
-    @classmethod
-    def jwt_02(cls, c, video_camera_name):  # 登录
-        sleep(3)
-        print ('第2条用例')
-
-    @classmethod
-    def jwt_03(cls, c, video_camera_name):  # 登录
-        sleep(3)
-        print('第3条用例')
