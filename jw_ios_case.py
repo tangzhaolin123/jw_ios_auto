@@ -24,7 +24,7 @@ class JiWei:
     # 登录 判断是否有设备
     @classmethod
     def jwt_01(cls, c, video_camera_name):  # 登录
-        c.session('com.co.Yoosee')  # 打开app   ！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
+        c.session('com.co.Yoosee')  # 打开app   ！！！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
         c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
         c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
         c(type='XCUIElementTypeSecureTextField').set_text("zx123456")  # 填写密码
@@ -42,7 +42,7 @@ class JiWei:
     @classmethod
     def jwt_02(cls, c, video_camera_name):  # 登录
         for i in range(10):
-            c.session('com.co.Yoosee')  # 打开app
+            c.session('com.co.Yoosee')  # 打开app ！！！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
             c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
             c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
             c(type='XCUIElementTypeSecureTextField').set_text("zx123456")  # 填写密码
@@ -50,7 +50,7 @@ class JiWei:
             c(name="同意并继续").click()  # 同意隐私协议
             c(name="以后").click()
             sleep(2)
-            assert c(name="添加设备")
+            assert c(name="添加设备")   # ！！！建议以用例检查点为判断
             c(xpath='//XCUIElementTypeButton[@name="我的"]').click()
             c(xpath='//XCUIElementTypeImage[@name="我的头像"]').click()
             c(name="退出登录").click()
@@ -59,7 +59,7 @@ class JiWei:
     #循环点击监控10次
     @classmethod
     def jwt_03(cls,c,video_camera_name):
-        c.session('com.co.Yoosee')  # 打开app
+        c.session('com.co.Yoosee')  # 打开app  ！！！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
         c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
         c(type='XCUIElementTypeTextField').set_text("17633853458")  # 填写账号
         c(type='XCUIElementTypeSecureTextField').set_text("xz123456")  # 填写密码
@@ -74,14 +74,4 @@ class JiWei:
             sleep(5)
         else:
             c.close()
-
-
-    @classmethod
-    def jwt_02(cls, c, video_camera_name):  # 登录
-        sleep(3)
-        print ('第2条用例')
-
-    @classmethod
-    def jwt_03(cls, c, video_camera_name):  # 登录
-        sleep(3)
-        print('第3条用例')
+        #！！！缺少判断
