@@ -19,6 +19,13 @@ import configparser
 # phone_pwd = config.get('sec1', '手机登录的密码')
 #wda.DEBUG = True
 
+class SameOperation:
+    def quit_app(self,c):
+        sleep(1)
+        c.home()
+        sleep(1)
+        c.session().app_terminate('com.co.Yoosee')
+
 
 class JiWei:
     # 登录 判断是否有设备

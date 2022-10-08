@@ -4,7 +4,7 @@ import traceback
 import random
 import configparser
 from jw_ios_case import JiWei
-#from jw_case import SameOperation
+from jw_case import SameOperation
 from datetime import datetime
 from datetime import timedelta
 import re
@@ -710,6 +710,7 @@ if __name__ == '__main__':
 				except:
 					pass
 				#SameOperation().quit_app(u)
+				SameOperation().quit_app(c)
 				#是否因为锁屏而报错
 				# if u.info.get("screenOn") != True:
 				# 	u.screen_off()
@@ -858,7 +859,7 @@ if __name__ == '__main__':
 						fail_caselog.append(w_report)
 						case_number.append(u0)
 						robot_loglist.append(robot_log_w)
-					#SameOperation().quit_app(u)
+					SameOperation().quit_app(c)
 				# if u.uiautomator.running() == False:
 				# 	u.uiautomator.start()
 			#关闭监视
