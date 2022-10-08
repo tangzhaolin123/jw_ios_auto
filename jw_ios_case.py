@@ -31,7 +31,7 @@ class JiWei:
     # 登录 判断是否有设备
     @classmethod
     def jwt_01(cls, c, video_camera_name):  # 登录
-        c.session('com.co.Yoosee')  # 打开app   ！！！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
+        c.session('com.co.Yoosee')  # 打开app   ！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
         c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
         c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
         c(type='XCUIElementTypeSecureTextField').set_text("zx123456")  # 填写密码
@@ -49,7 +49,7 @@ class JiWei:
     @classmethod
     def jwt_02(cls, c, video_camera_name):  # 登录
         for i in range(10):
-            c.session('com.co.Yoosee')  # 打开app ！！！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
+            c.session('com.co.Yoosee')  # 打开app
             c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
             c(type='XCUIElementTypeTextField').set_text("1755354468@qq.com")  # 填写账号
             c(type='XCUIElementTypeSecureTextField').set_text("zx123456")  # 填写密码
@@ -57,7 +57,7 @@ class JiWei:
             c(name="同意并继续").click()  # 同意隐私协议
             c(name="以后").click()
             sleep(2)
-            assert c(name="添加设备")   # ！！！建议以用例检查点为判断
+            assert c(name="添加设备")
             c(xpath='//XCUIElementTypeButton[@name="我的"]').click()
             c(xpath='//XCUIElementTypeImage[@name="我的头像"]').click()
             c(name="退出登录").click()
@@ -66,7 +66,7 @@ class JiWei:
     #循环点击监控10次
     @classmethod
     def jwt_03(cls,c,video_camera_name):
-        c.session('com.co.Yoosee')  # 打开app  ！！！打开APP后，有等待一段时间，可以用强制等待sleep或显性等待wait
+        c.session('com.co.Yoosee')  # 打开app
         c(type='XCUIElementTypeTextField').clear_text()  # 清除账号
         c(type='XCUIElementTypeTextField').set_text("17633853458")  # 填写账号
         c(type='XCUIElementTypeSecureTextField').set_text("xz123456")  # 填写密码
@@ -81,4 +81,112 @@ class JiWei:
             sleep(5)
         else:
             c.close()
-        #！！！缺少判断
+
+
+    @classmethod
+    def jwt_02(cls, c, video_camera_name):  # 登录
+        sleep(3)
+        print ('第2条用例')
+
+    @classmethod
+    def jwt_03(cls, c, video_camera_name):  # 登录
+        sleep(3)
+        print('第3条用例')
+
+
+
+    @classmethod
+    def jwt_01(cls, c, video_camera_name):  # 周手机成功登录
+            c.session('com.co.Yoosee')  # 打开app
+            c(type='XCUIElementTypeTextField').clear_text()  # 清除当前账号
+            c(type='XCUIElementTypeTextField').set_text("13016129715")  # 输入手机号
+            c(type='XCUIElementTypeSecureTextField').set_text("qwe12345")  # 输入正确密码
+            c(name="登录").click()  # 点击登录按钮
+            c(name="同意并继续").click()  # 同意隐私协议
+            c(name="以后").click()
+            sleep(2)
+            c.screenshot().save("screen.png")  # 截图登录进来的界面
+            c(name="我的").click()
+            c(name="我的头像").click()
+            c(name="退出登录").click()
+            sleep(3)
+            c.session().app_terminate('com.co.Yoosee')  # 关闭app
+
+    @classmethod
+    def jwt_02(cls, c, video_camera_name):  # 周查看yooseeID
+            c.session('com.co.Yoosee')  # 打开app
+            c(type='XCUIElementTypeTextField').clear_text()  # 清除当前账号
+            c(type='XCUIElementTypeTextField').set_text("karinzl@163.com")  # 输入手机号
+            c(type='XCUIElementTypeSecureTextField').set_text("qwe12345")  # 输入正确密码
+            c(name="登录").click()
+            c(name="同意并继续").click()
+            c(name="以后").click()
+            c(name="我的").click()
+            c(type="XCUIElementTypeStaticText").click()
+            if c(enabled="true").exists:
+                c(name="退出登录").click()
+            else:
+                assert c.screenshot().save("error.png")  # 没有yooseeID的话就截图报错
+            sleep(3)
+            c.session().app_terminate('com.co.Yoosee')  # 关闭app
+
+    @classmethod
+    def jwt_03(cls, c, video_camera_name):  # 周云婷登录判断是否有设备
+            c.session('com.co.Yoosee')  # 打开app
+            c(type='XCUIElementTypeTextField').clear_text()  # 清除当前账号
+            c(type='XCUIElementTypeTextField').set_text("karinzl@163.com")  # 输入手机号
+            c(type='XCUIElementTypeSecureTextField').set_text("qwe12345")  # 输入正确密码
+            c(name="登录").click()
+            c(name="同意并继续").click()
+            c(name="以后").click()
+            # 如果有添加设备按钮则截图退出
+            if c(name="添加设备入口").exists:
+                sleep(2)
+                c.screenshot().save("JiWEi.png")
+                c(name="我的").click()
+                c(name="我的头像").click()
+                c(name="退出登录").click()
+            # 有设备的话直接退出
+            else:
+                assert c(type="XCUIElementTypeStaticText").exists
+                c(name="我的").click()
+                c(name="我的头像").click()
+                c(name="退出登录").click()
+            sleep(3)
+            c.session().app_terminate('com.co.Yoosee')  # 关闭app
+
+    @classmethod
+    def jwt_07(cls, c, video_camera_name):  # 周云婷微信登录判断无设备（已登录微信号）
+            c.session('com.co.Yoosee')
+            c(name="微信").click()
+            c(name="同意并继续").click()
+            # 没有设备的话退出账号
+            if c(type="XCUIElementTypeButton").exists:
+                sleep(2)
+                c.screenshot().save("JiWEi1.png")
+                c(name="我的").click()
+                c(type="XCUIElementTypeStaticText").click()
+                c(name="退出登录").click()
+            # 有设备的话直接退出
+            else:
+                assert c(type="XCUIElementTypeStaticText").exists
+                c(name="我的").click()
+                c(name="我的头像").click()
+                c(name="退出登录").click()
+            sleep(3)
+            c.session().app_terminate('com.co.Yoosee')  # 关闭app
+
+    @classmethod
+    def jwt_08(cls, c, video_camera_name):  # 周云婷微信登录查看yooseeID
+            c.session('com.co.Yoosee')
+            c(name="微信").click()
+            c(name="同意并继续").click()
+            c(name="我的").click()
+            c(type="XCUIElementTypeStaticText").click()
+            if c(type="XCUIElementTypeImage").exists:
+                c.screenshot().save("image.png")
+                c(name="退出登录").click()
+            else:
+                assert c.screenshot().save("error.png")  # 没有头像的话就报错截图
+            sleep(3)
+            c.session().app_terminate('com.co.Yoosee')  # 关闭app
