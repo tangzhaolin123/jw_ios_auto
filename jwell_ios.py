@@ -4,7 +4,7 @@ import traceback
 import random
 import configparser
 from jw_ios_case import JiWei
-from jw_case import SameOperation
+from jw_ios_case import SameOperation
 from datetime import datetime
 from datetime import timedelta
 import re
