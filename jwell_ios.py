@@ -224,11 +224,34 @@ class Template_mixin(object):
             <p class='attribute'><strong>测试结果 : </strong> %(value)s</p>
             <p class='attribute'><strong>APK版本 : </strong> %(appVersion)s</p>
             <style type="text/css" media="screen">
-        body  { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px;}
+		table.hovertable {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #999999;
+            border-collapse: collapse;
+        }
+        table.hovertable th {
+            background-color:#c3dde0;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #a9c6c9;
+        }
+        table.hovertable tr {
+            background-color:#d4e3e5;
+        }
+        table.hovertable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #a9c6c9;
+        }
         </style>
         </head>
         <body>
-            <table id='result_table' class="table table-condensed table-bordered table-hover">
+            <table class="hovertable">
                 <colgroup>
                     <col align='left' />
                     <col align='right' />
@@ -254,7 +277,7 @@ class Template_mixin(object):
         </html>"""
 
     TABLE_TMPL = """
-        <tr class='failClass warning'>
+        <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
             <td>%(step)s</td>
             <td>%(case_module)s</td>
             <td>%(case_name)s</td>
