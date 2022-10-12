@@ -531,11 +531,11 @@ class FileUp:
             res = up2qiniu(result, "jwtime1", result)
             sleep(5)
             r = requests.get(url=res)
-            if r.status_code == 200:
-				try:
-					os.remove(result)
-				except:
-					pass
+            #if r.status_code == 200:
+				#try:
+					#os.remove(result)
+				#except:
+					#pass
 
     def main(self):
         #while True:
