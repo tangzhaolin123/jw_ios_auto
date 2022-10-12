@@ -10,7 +10,7 @@ from functools import reduce
 import threading
 import configparser
 import cv2
-
+#213313213331
 class JiWei:
     class JiWei:
         @classmethod
