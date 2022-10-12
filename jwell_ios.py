@@ -4,7 +4,7 @@ import traceback
 import random
 import configparser
 from jw_ios_case import JiWei
-from jw_ios_case import SameOperation
+#from jw_ios_case import SameOperation
 from datetime import datetime
 from datetime import timedelta
 import re
@@ -733,7 +733,7 @@ if __name__ == '__main__':
 				except:
 					pass
 				#SameOperation().quit_app(u)
-				SameOperation().quit_app(c)
+				#SameOperation().quit_app(c)
 				#是否因为锁屏而报错
 				# if u.info.get("screenOn") != True:
 				# 	u.screen_off()
@@ -882,7 +882,7 @@ if __name__ == '__main__':
 						fail_caselog.append(w_report)
 						case_number.append(u0)
 						robot_loglist.append(robot_log_w)
-					SameOperation().quit_app(c)
+					#SameOperation().quit_app(c)
 				# if u.uiautomator.running() == False:
 				# 	u.uiautomator.start()
 			#关闭监视
@@ -982,7 +982,7 @@ if __name__ == '__main__':
 
 				)
 				table_tr0 += table_td
-		case_url = '<a href=https://docs.qq.com/sheet/DTlZ5aEJEcUJwSVl6>查看测试用例</a>'
+		case_url = '<a href=https://docs.qq.com/sheet/DTktvUnp3d0xaRnZs?tab=BB08J3>查看测试用例</a>'
 		total_str = '共 %s，通过 %s，失败 %s，通过率 %s' % (
 		count_case_fail + count_success, count_success, count_case_fail, str(round(count_success / (count_case_fail + count_success),2) * 100) + '%')
 		# start_time = '2022-04-30_15:15'
