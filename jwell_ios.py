@@ -290,8 +290,8 @@ class Template_mixin(object):
         </tr>"""
 
 def app_excel_field(case_code):
-    # app_xlsfile = os.getcwd() + '\\app_auto_case.xlsx'  # 打开指定路径中的xls文件
-	app_xlsfile = 'app_auto_case.xlsx'
+    # app_xlsfile = os.getcwd() + '\\app_auto_ios_case.xlsx'  # 打开指定路径中的xls文件
+	app_xlsfile = 'app_auto_ios_case.xlsx'
 	app_book = xlrd.open_workbook(app_xlsfile)
 	app_sheet0 = app_book.sheet_by_index(1)
 	app_row_n = app_sheet0.nrows - 1
@@ -301,7 +301,7 @@ def app_excel_field(case_code):
 
 class CaseExcel:
     def __init__(self):
-        self.app_xlsfile = 'app_auto_case.xlsx'
+        self.app_xlsfile = 'app_auto_ios_case.xlsx'
         self.app_book = xlrd.open_workbook(self.app_xlsfile)#打开文件
         self.app_sheet0 = self.app_book.sheet_by_index(1)#通过索引顺序获取
         self.app_row_n = self.app_sheet0.nrows - 1
