@@ -140,11 +140,6 @@ class JiWei:
     def jwt_08(cls, c, video_camera_name):  # 微信登录查看yooseeID（前提是微信登录的状态）
         c.session('com.co.Yoosee')
         c(name="微信").click()
-        c(name="同意并继续").click()
-        c(name="我的").click()
-        c(type="XCUIElementTypeStaticText").click()
-        if c(type="XCUIElementTypeImage").exists:
-            c.screenshot().save("image.png")
             c(name="退出登录").click()
         else:
             assert c.screenshot().save("error.png")  # 没有头像的话就报错截图
