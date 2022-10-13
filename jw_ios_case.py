@@ -11,6 +11,12 @@ import threading
 import configparser
 import cv2
 #213313213331
+class SameOperation:
+    def quit_app(self,c):
+        sleep(1)
+        c.home()
+        sleep(1)
+        c.session().app_terminate('com.co.Yoosee')
 class JiWei:
     class JiWei:
         @classmethod
